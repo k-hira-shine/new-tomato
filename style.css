@@ -124,7 +124,9 @@ h2 {
     display: inline-block;
     background: linear-gradient(var(--fire-yellow), var(--fire-orange), var(--fire-red));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
     animation: timerPulse 1s infinite;
 }
 
