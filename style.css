@@ -5,98 +5,256 @@
     font-family: 'Hiragino Kaku Gothic Pro', 'メイリオ', sans-serif;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    --neon-blue: #00f3ff;
+    --neon-purple: #9d00ff;
+    --neon-pink: #ff00f7;
+    --dark-bg: #0a0a20;
+    --glass-bg: rgba(20, 20, 50, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
 body {
-    background-color: #f5f5f5;
+    background: linear-gradient(135deg, var(--dark-bg), #000);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(var(--neon-blue), 0.1), transparent 30%),
+                radial-gradient(circle at 80% 20%, rgba(var(--neon-purple), 0.1), transparent 30%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .container {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    background: var(--glass-bg);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 40px;
     width: 90%;
     max-width: 500px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.container::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(0, 243, 255, 0.05), transparent);
+    transform: rotate(30deg);
+    animation: glassShine 8s linear infinite;
+    z-index: -1;
+}
+
+@keyframes glassShine {
+    0% { transform: translateX(-100%) rotate(30deg); }
+    100% { transform: translateX(100%) rotate(30deg); }
 }
 
 h1 {
-    color: #e74c3c;
-    margin-bottom: 20px;
+    color: white;
+    margin-bottom: 30px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
 }
 
 h2 {
-    color: #333;
+    color: rgba(255, 255, 255, 0.9);
     font-size: 1.2rem;
-    margin: 15px 0;
+    margin: 20px 0;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
 }
 
 .timer-display {
-    font-size: 5rem;
+    font-size: 6rem;
     font-weight: bold;
-    color: #333;
-    margin: 20px 0;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    margin: 30px 0;
+    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    position: relative;
+    display: inline-block;
+}
+
+.timer-display::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -20px;
+    right: -20px;
+    bottom: -10px;
+    border: 2px solid rgba(0, 243, 255, 0.3);
+    border-radius: 10px;
+    z-index: -1;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.05); opacity: 0.3; }
+    100% { transform: scale(1); opacity: 0.7; }
 }
 
 .timer-status {
     font-size: 1.5rem;
-    color: #666;
-    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    display: inline-block;
+    padding: 5px 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
 }
 
 .controls {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
+    gap: 15px;
+    margin: 30px 0;
+    flex-wrap: wrap;
 }
 
 button {
-    background-color: #e74c3c;
+    background: rgba(0, 0, 0, 0.4);
     color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
+    border: 1px solid var(--neon-blue);
+    border-radius: 50px;
+    padding: 12px 25px;
     font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+    z-index: 1;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: all 0.5s ease;
+    z-index: -1;
+}
+
+button:hover::before {
+    left: 100%;
 }
 
 button:hover {
-    background-color: #c0392b;
+    background: rgba(0, 243, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+    transform: translateY(-2px);
 }
 
 #pause-btn {
-    background-color: #3498db;
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 10px rgba(157, 0, 255, 0.3);
 }
 
 #pause-btn:hover {
-    background-color: #2980b9;
+    background: rgba(157, 0, 255, 0.2);
+    box-shadow: 0 0 15px rgba(157, 0, 255, 0.5);
 }
 
 #reset-btn {
-    background-color: #95a5a6;
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 10px rgba(255, 0, 247, 0.3);
 }
 
 #reset-btn:hover {
-    background-color: #7f8c8d;
+    background: rgba(255, 0, 247, 0.2);
+    box-shadow: 0 0 15px rgba(255, 0, 247, 0.5);
 }
 
 .settings {
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    padding: 15px;
-    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 30px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .setting-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
+    margin: 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+input[type="number"] {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-border);
+    border-radius: 5px;
+    padding: 8px 12px;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    width: 70px;
+    text-align: center;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+/* 作業時間と休憩時間の背景色を変更 */
+body.work {
+    background: linear-gradient(135deg, #1a0033, #000);
+}
+
+body.break {
+    background: linear-gradient(135deg, #003322, #000);
 }
 
 input[type="number"] {
