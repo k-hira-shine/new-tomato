@@ -5,98 +5,297 @@
     font-family: 'Hiragino Kaku Gothic Pro', 'メイリオ', sans-serif;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&display=swap');
+
+:root {
+    --fire-red: #ff3d00;
+    --fire-orange: #ff9100;
+    --fire-yellow: #ffea00;
+    --dark-red: #b71c1c;
+    --hot-pink: #ff0066;
+    --hot-purple: #aa00ff;
+    --dark-bg: #1a0000;
+}
+
 body {
-    background-color: #f5f5f5;
+    background: linear-gradient(135deg, var(--dark-bg), #000);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(255, 61, 0, 0.2), transparent 70%);
+    animation: backgroundPulse 3s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes backgroundPulse {
+    0% { opacity: 0.3; transform: scale(0.8); }
+    100% { opacity: 0.7; transform: scale(1.2); }
 }
 
 .container {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    border: 2px solid var(--fire-red);
+    box-shadow: 0 0 20px var(--fire-red), inset 0 0 30px rgba(255, 61, 0, 0.3);
     padding: 30px;
     width: 90%;
     max-width: 500px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(0deg, var(--fire-red), var(--fire-orange), var(--fire-yellow), transparent);
+    filter: blur(20px);
+    opacity: 0.7;
+    animation: flameEffect 3s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes flameEffect {
+    0% { transform: translateY(5px) scale(0.95); opacity: 0.5; }
+    100% { transform: translateY(-5px) scale(1.05); opacity: 0.8; }
 }
 
 h1 {
-    color: #e74c3c;
-    margin-bottom: 20px;
+    color: var(--fire-yellow);
+    margin-bottom: 25px;
+    font-family: 'Teko', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--fire-red), 0 0 20px var(--fire-orange);
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: '🔥'; /* 炎の絵文字 */
+    position: absolute;
+    right: -40px;
+    top: 0;
+    font-size: 2.5rem;
+    animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
 }
 
 h2 {
-    color: #333;
-    font-size: 1.2rem;
+    color: var(--fire-orange);
+    font-size: 1.5rem;
+    font-family: 'Teko', sans-serif;
     margin: 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px var(--fire-red);
 }
 
 .timer-display {
-    font-size: 5rem;
+    font-size: 7rem;
     font-weight: bold;
-    color: #333;
+    font-family: 'Teko', sans-serif;
+    color: white;
     margin: 20px 0;
+    text-shadow: 0 0 10px var(--fire-red), 0 0 20px var(--fire-orange);
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(var(--fire-yellow), var(--fire-orange), var(--fire-red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: timerPulse 1s infinite;
+}
+
+@keyframes timerPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
 }
 
 .timer-status {
-    font-size: 1.5rem;
-    color: #666;
-    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-family: 'Teko', sans-serif;
+    color: var(--fire-yellow);
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px var(--fire-orange);
+    position: relative;
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 30px;
+    background: rgba(255, 61, 0, 0.2);
+    border: 1px solid var(--fire-red);
+    box-shadow: 0 0 10px var(--fire-red);
 }
 
 .controls {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
+    gap: 15px;
+    margin: 30px 0;
+    flex-wrap: wrap;
 }
 
 button {
-    background-color: #e74c3c;
+    background: linear-gradient(to bottom, var(--fire-orange), var(--fire-red));
     color: white;
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1rem;
+    border-radius: 50px;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    font-family: 'Teko', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px var(--fire-red);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s;
+    z-index: -1;
+}
+
+button:hover::before {
+    left: 100%;
 }
 
 button:hover {
-    background-color: #c0392b;
+    background: linear-gradient(to bottom, var(--fire-red), var(--dark-red));
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px var(--fire-red), 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 #pause-btn {
-    background-color: #3498db;
+    background: linear-gradient(to bottom, var(--hot-purple), var(--hot-pink));
+    box-shadow: 0 0 15px var(--hot-pink);
 }
 
 #pause-btn:hover {
-    background-color: #2980b9;
+    background: linear-gradient(to bottom, var(--hot-pink), var(--hot-purple));
+    box-shadow: 0 0 20px var(--hot-pink), 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 #reset-btn {
-    background-color: #95a5a6;
+    background: linear-gradient(to bottom, #ff9100, #ff6d00);
+    box-shadow: 0 0 15px #ff6d00;
 }
 
 #reset-btn:hover {
-    background-color: #7f8c8d;
+    background: linear-gradient(to bottom, #ff6d00, #ff3d00);
+    box-shadow: 0 0 20px #ff6d00, 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .settings {
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    padding: 15px;
-    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 30px;
+    border: 1px solid var(--fire-red);
+    box-shadow: 0 0 10px var(--fire-red), inset 0 0 20px rgba(255, 61, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.settings::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, var(--fire-red), transparent 70%);
+    opacity: 0.7;
+    border-radius: 50%;
+    filter: blur(5px);
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    0% { opacity: 0.5; transform: scale(0.8); }
+    100% { opacity: 0.9; transform: scale(1.2); }
 }
 
 .setting-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
+    margin: 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 61, 0, 0.3);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+input[type="number"] {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--fire-orange);
+    border-radius: 5px;
+    padding: 8px 12px;
+    color: white;
+    font-family: 'Teko', sans-serif;
+    font-size: 1.2rem;
+    width: 70px;
+    text-align: center;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--fire-yellow);
+    box-shadow: 0 0 10px var(--fire-red);
+}
+
+/* 作業時間と休憩時間の背景色を変更 */
+body.work {
+    background: linear-gradient(135deg, #330000, #000);
+}
+
+body.work::before {
+    background: radial-gradient(ellipse at center, rgba(255, 0, 0, 0.2), transparent 70%);
+}
+
+body.break {
+    background: linear-gradient(135deg, #003300, #000);
+}
+
+body.break::before {
+    background: radial-gradient(ellipse at center, rgba(0, 255, 0, 0.1), transparent 70%);
 }
 
 input[type="number"] {
